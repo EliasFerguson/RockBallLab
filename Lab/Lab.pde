@@ -31,9 +31,8 @@ public class LivingRock extends Rock implements Moveable {
   int yinc;
   LivingRock(float x, float y) {
     super(x, y);
-    int[] moves = {-1, 0, 1};
-    xinc = moves[(int) random(0, 3)];
-    yinc = moves[(int) random(0, 3)];
+    xinc = (int) random(-1, 2);
+    yinc = (int) random(-1, 2);
   }
   void move() {
     x += xinc;
