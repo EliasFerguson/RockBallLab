@@ -34,9 +34,11 @@ public class LivingRock extends Rock implements Moveable {
     xinc = (int) random(-1, 2);
     yinc = (int) random(-1, 2);
   }
-  void move() {
+  void move() {   
     x += xinc;
     y += yinc;
+    int switchy = (int) random(0, 100);
+    
   }
 }
 
