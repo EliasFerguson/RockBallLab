@@ -27,7 +27,7 @@ class Rock extends Thing {
   }
 
   void display() {
-    //rect(x,y,50,50);
+    rect(x,y,50,50);
     /*
     int sides = (int) random(3, 21);
     beginShape();
