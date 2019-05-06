@@ -44,7 +44,7 @@ class Ball extends Thing implements Moveable {
   }
 
   void display() {
-    /* ONE PERSON WRITE THIS */
+    ellipse(x,y,50,50);
   }
 
   void move() {
