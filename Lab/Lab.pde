@@ -27,13 +27,17 @@ class Rock extends Thing {
 }
 
 public class LivingRock extends Rock implements Moveable {
+  int xinc;
+  int yinc;
   LivingRock(float x, float y) {
     super(x, y);
+    int[] moves = {-1, 0, 1};
+    xinc = moves[(int) random(0, 3)];
+    yinc = moves[(int) random(0, 3)];
   }
   void move() {
-    int[] moves = {-1, 0, 1};
-    x += moves[(int) random(0, 3)];
-    y += moves[(int) random(0, 3)];
+    x += xinc;
+    y += yinc;
   }
 }
 
