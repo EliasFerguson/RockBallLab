@@ -17,23 +17,39 @@ abstract class Thing implements Displayable {
 }
 
 class Rock extends Thing {
+  int shape, sides, num;
   Rock(float x, float y) {
     super(x, y);
+    shape = (int) random(0, 4);
+    sides = (int) random(3, 21);
+    num = (int) random(-10, 11);
+    fill(random(0,255), random(0,255), random(0,255));
   }
 
   void display() {
     rect(x,y,50,50);
+    /*
+    int sides = (int) random(3, 21);
+    beginShape();
+    for (int i = 0; i < sides; i++) {
+      vertex(x+num,y+num);
+    }
+    endShape();
+    */
   }
 }
 
 public class LivingRock extends Rock implements Moveable {
+  int xinc;
+  int yinc;
   LivingRock(float x, float y) {
     super(x, y);
+    xinc = (int) random(-1, 2);
+    yinc = (int) random(-1, 2);
   }
   void move() {
-    int[] moves = {-1, 0, 1};
-    x += moves[(int) random(0, 3)];
-    y += moves[(int) random(0, 3)];
+    x += xinc;
+    y += yinc;
   }
 }
 
@@ -50,8 +66,13 @@ class Ball extends Thing implements Moveable {
   }
 
   void move() {
+<<<<<<< HEAD
     x += random(-2,2);
     y += random(-2,2);
+=======
+    x += (int)random(-1,2);
+    y += (int)random(-1,2);
+>>>>>>> d28f9bdd3b16710a9f78fc3c892ca3de1ec3c4bc
   }
 }
 
