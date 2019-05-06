@@ -40,13 +40,16 @@ class Rock extends Thing {
 }
 
 public class LivingRock extends Rock implements Moveable {
+  int xinc;
+  int yinc;
   LivingRock(float x, float y) {
     super(x, y);
+    xinc = (int) random(-1, 2);
+    yinc = (int) random(-1, 2);
   }
   void move() {
-    int[] moves = {-1, 0, 1};
-    x += moves[(int) random(0, 3)];
-    y += moves[(int) random(0, 3)];
+    x += xinc;
+    y += yinc;
   }
 }
 
@@ -61,7 +64,8 @@ class Ball extends Thing implements Moveable {
   }
 
   void move() {
-    /* ONE PERSON WRITE THIS */
+    x += random(-1,2);
+    y += random(-1,2);
   }
 }
 
