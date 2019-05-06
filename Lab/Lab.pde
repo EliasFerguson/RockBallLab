@@ -45,11 +45,13 @@ class Ball extends Thing implements Moveable {
 
   void display() {
     ellipse(x,y,50,50);
+    ellipse(x-10, y-10, 20, 20);
+    ellipse(x+10, y-10, 20, 20);
   }
 
   void move() {
-    x += random(-1,2);
-    y += random(-1,2);
+    x += random(-2,2);
+    y += random(-2,2);
   }
 }
 
