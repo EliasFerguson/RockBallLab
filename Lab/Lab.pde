@@ -17,12 +17,25 @@ abstract class Thing implements Displayable {
 }
 
 class Rock extends Thing {
+  int shape, sides, num;
   Rock(float x, float y) {
     super(x, y);
+    shape = (int) random(0, 4);
+    sides = (int) random(3, 21);
+    num = (int) random(-10, 11);
+    fill(random(0,255), random(0,255), random(0,255));
   }
 
   void display() {
     rect(x,y,50,50);
+    /*
+    int sides = (int) random(3, 21);
+    beginShape();
+    for (int i = 0; i < sides; i++) {
+      vertex(x+num,y+num);
+    }
+    endShape();
+    */
   }
 }
 
