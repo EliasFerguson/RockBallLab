@@ -22,7 +22,7 @@ class Rock extends Thing {
   }
 
   void display() {
-    /* ONE PERSON WRITE THIS */
+    rect(x,y,50,50);
   }
 }
 
@@ -31,7 +31,9 @@ public class LivingRock extends Rock implements Moveable {
     super(x, y);
   }
   void move() {
-    /* ONE PERSON WRITE THIS */
+    int[] moves = {-1, 0, 1};
+    x += moves[(int) random(0, 3)];
+    y += moves[(int) random(0, 3)];
   }
 }
 
