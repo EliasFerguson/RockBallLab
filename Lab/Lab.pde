@@ -51,8 +51,8 @@ class Ball extends Thing implements Moveable {
   }
 
   void move() {
-    x += random(-1,2);
-    y += random(-1,2);
+    x += (int)random(-1,2);
+    y += (int)random(-1,2);
   }
 }
 
