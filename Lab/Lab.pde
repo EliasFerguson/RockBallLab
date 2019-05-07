@@ -18,17 +18,15 @@ abstract class Thing implements Displayable {
 
 class Rock extends Thing {
   int shape, sides;
-  int[] Xnum, Ynum;
+  float[] Xnum, Ynum;
   Rock(float x, float y) {
     super(x, y);
     shape = (int) random(0, 4);
     sides = (int) random(3, 21);
-    Xnum = new int[sides];
-    Ynum = new int[sides];
-    for (int i = 0; i < sides; i++) {
-      Xnum[i] = (int) random(-10*i, 11*i);
-      Ynum[i] = (int) random(-10*i, 11*i);
-    }
+    
+    Xnum = new float[] {x-25, random(x-1, x-25), x, random(x+1, x+25), x+25, random(x+1, x+25), x, random(x-1, x-25)};
+    Ynum = new float[] {y, random(y-1, y-25), y-25, random(y-1, y-25), y, random(y+1, y+25), y+25, random(y+1, y+25)};
+    
     fill(random(0,255), random(0,255), random(0,255));
   }
 
@@ -38,10 +36,10 @@ class Rock extends Thing {
     if (shape == 2) {ellipse(x,y,50,25);}
     if (shape == 3) {
       beginShape();
-      for (int i = 0; i < sides; i++) {
-        vertex(x+Xnum[i],y+Ynum[i]);
+      for (int i = 0; i < 8; i++) {
+        vertex(Xnum[i],Ynum[i]);
       }
-      endShape();
+      endShape(CLOSE);
     }
   }
 }
