@@ -23,14 +23,12 @@ class Rock extends Thing {
     super(x, y);
     shape = (int) random(0, 4);
     sides = (int) random(3, 21);
-    /*
     Xnum = new int[sides];
     Ynum = new int[sides];
     for (int i = 0; i < sides; i++) {
       Xnum[i] = (int) random(-10*i, 11*i);
       Ynum[i] = (int) random(-10*i, 11*i);
     }
-    */
     fill(random(0,255), random(0,255), random(0,255));
   }
 
@@ -38,14 +36,13 @@ class Rock extends Thing {
     if (shape == 0) {rect(x,y,50,50);}
     if (shape == 1) {triangle(x,y-25,x+25,y+25,x-25,y+25);}
     if (shape == 2) {ellipse(x,y,50,25);}
-    
-    /*
-    beginShape();
-    for (int i = 0; i < sides; i++) {
-      vertex(x+Xnum[i],y+Ynum[i]);
+    if (shape == 3) {
+      beginShape();
+      for (int i = 0; i < sides; i++) {
+        vertex(x+Xnum[i],y+Ynum[i]);
+      }
+      endShape();
     }
-    endShape();
-    */
   }
 }
 
