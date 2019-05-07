@@ -24,13 +24,15 @@ class Rock extends Thing {
     shape = (int) random(0, 4);
     sides = (int) random(3, 21);
     
+    /*
     Xnum = new float[] {x-25, random(x-1, x-25), x, random(x+1, x+25), x+25, random(x+1, x+25), x, random(x-1, x-25)};
     Ynum = new float[] {y, random(y-1, y-25), y-25, random(y-1, y-25), y, random(y+1, y+25), y+25, random(y+1, y+25)};
-    
+    */
     fill(random(0,255), random(0,255), random(0,255));
   }
 
   void display() {
+    /*
     if (shape == 0) {rect(x,y,50,50);}
     if (shape == 1) {triangle(x,y-25,x+25,y+25,x-25,y+25);}
     if (shape == 2) {ellipse(x,y,50,25);}
@@ -41,6 +43,8 @@ class Rock extends Thing {
       }
       endShape(CLOSE);
     }
+    */
+    
   }
 }
 
