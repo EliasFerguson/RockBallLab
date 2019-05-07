@@ -51,7 +51,11 @@ public class LivingRock extends Rock implements Moveable {
     x += xinc;
     y += yinc;
     int switchy = (int) random(0, 100);
-    
+    if (switchy == 0) {
+      int switcher = (int) random(0, 2);
+      if (switcher == 0) xinc = (int) random(-1, 2);
+      if (switcher == 1) yinc = (int) random(-1, 2);
+    }
   }
 }
 
@@ -68,13 +72,10 @@ class Ball extends Thing implements Moveable {
   }
 
   void move() {
-<<<<<<< HEAD
     x += random(-2,2);
     y += random(-2,2);
-=======
     x += (int)random(-1,2);
     y += (int)random(-1,2);
->>>>>>> d28f9bdd3b16710a9f78fc3c892ca3de1ec3c4bc
   }
 }
 
