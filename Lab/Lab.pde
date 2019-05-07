@@ -17,18 +17,19 @@ abstract class Thing implements Displayable {
 }
 
 class Rock extends Thing {
-  int shape, sides;
-  float[] Xnum, Ynum;
+  int shape;
+  PImage i1 = loadImage("grafitti rock.jpg");
+  PImage i2 = loadImage("generic rock.jpg");
   Rock(float x, float y) {
     super(x, y);
-    shape = (int) random(0, 4);
-    sides = (int) random(3, 21);
+    shape = (int) random(0, 2);
     
     /*
     Xnum = new float[] {x-25, random(x-1, x-25), x, random(x+1, x+25), x+25, random(x+1, x+25), x, random(x-1, x-25)};
     Ynum = new float[] {y, random(y-1, y-25), y-25, random(y-1, y-25), y, random(y+1, y+25), y+25, random(y+1, y+25)};
     */
     fill(random(0,255), random(0,255), random(0,255));
+    
   }
 
   void display() {
@@ -44,7 +45,8 @@ class Rock extends Thing {
       endShape(CLOSE);
     }
     */
-    
+    if (shape == 1) {image(i1,x,y,50,50);}
+    else {image(i2,x,y,50,50);}
   }
 }
 
