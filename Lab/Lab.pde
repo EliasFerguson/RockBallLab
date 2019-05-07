@@ -18,25 +18,36 @@ abstract class Thing implements Displayable {
 }
 
 class Rock extends Thing {
-  int shape, sides, num;
+  PImage i1 = loadImage("grafitti rock.jpg");
+  PImage i2 = loadImage("generic rock.jpg");
+  int shape;
   Rock(float x, float y) {
     super(x, y);
-    shape = (int) random(0, 4);
-    sides = (int) random(3, 21);
-    num = (int) random(-10, 11);
+    shape = (int) random(0, 2);
+    
+    /*
+    Xnum = new float[] {x-25, random(x-1, x-25), x, random(x+1, x+25), x+25, random(x+1, x+25), x, random(x-1, x-25)};
+    Ynum = new float[] {y, random(y-1, y-25), y-25, random(y-1, y-25), y, random(y+1, y+25), y+25, random(y+1, y+25)};
+    */
     fill(random(0,255), random(0,255), random(0,255));
+    
   }
 
   void display() {
-    rect(x,y,50,50);
     /*
-    int sides = (int) random(3, 21);
-    beginShape();
-    for (int i = 0; i < sides; i++) {
-      vertex(x+num,y+num);
+    if (shape == 0) {rect(x,y,50,50);}
+    if (shape == 1) {triangle(x,y-25,x+25,y+25,x-25,y+25);}
+    if (shape == 2) {ellipse(x,y,50,25);}
+    if (shape == 3) {
+      beginShape();
+      for (int i = 0; i < 8; i++) {
+        vertex(Xnum[i],Ynum[i]);
+      }
+      endShape(CLOSE);
     }
-    endShape();
     */
+    if (shape == 1) {image(i1,x,y,50,50);}
+    else {image(i2,x,y,50,50);}
   }
 }
 
@@ -48,9 +59,19 @@ public class LivingRock extends Rock implements Moveable {
     xinc = (int) random(-1, 2);
     yinc = (int) random(-1, 2);
   }
-  void move() {
+  void move() {  
+    if (x < 50) xinc = 1;
+    if (x > 950) xinc = -1;
+    if (y < 50) yinc = 1;
+    if (y > 750) yinc = -1;
     x += xinc;
     y += yinc;
+    int switchy = (int) random(0, 25);
+    if (switchy == 0) {
+      int switcher = (int) random(0, 2);
+      if (switcher == 0) xinc = (int) random(-1, 2);
+      if (switcher == 1) yinc = (int) random(-1, 2);
+    }
   }
 }
 
@@ -74,6 +95,8 @@ class Ball extends Thing implements Moveable {
     x += (int)random(-1,2);
     y += (int)random(-1,2);
 
+    x += (int)random(-1,2);
+    y += (int)random(-1,2);
   }
 }
 
@@ -84,7 +107,9 @@ ArrayList<Moveable> thingsToMove;
 
 void setup() {
   size(1000, 800);
+  
   img = loadImage("soccer.jpg");
+  
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
   for (int i = 0; i < 10; i++) {
