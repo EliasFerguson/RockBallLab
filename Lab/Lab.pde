@@ -17,9 +17,9 @@ abstract class Thing implements Displayable {
 }
 
 class Rock extends Thing {
-  int shape;
   PImage i1 = loadImage("grafitti rock.jpg");
   PImage i2 = loadImage("generic rock.jpg");
+  int shape;
   Rock(float x, float y) {
     super(x, y);
     shape = (int) random(0, 2);
@@ -101,7 +101,6 @@ ArrayList<Moveable> thingsToMove;
 
 void setup() {
   size(1000, 800);
-
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
   for (int i = 0; i < 10; i++) {
