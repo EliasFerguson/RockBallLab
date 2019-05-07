@@ -1,3 +1,4 @@
+PImage img;
 interface Displayable {
   void display();
 }
@@ -81,14 +82,24 @@ class Ball extends Thing implements Moveable {
   }
 
   void display() {
-    ellipse(x,y,50,50);
+    /*ellipse(x,y,50,50);
     ellipse(x-10, y-10, 20, 20);
-    ellipse(x+10, y-10, 20, 20);
+    ellipse(x+10, y-10, 20, 20);*/
+    image(img, x, y, 50, 50);
   }
 
   void move() {
     x += random(-2,2);
     y += random(-2,2);
+<<<<<<< HEAD
+=======
+
+    x += (int)random(-1,2);
+    y += (int)random(-1,2);
+
+    x += (int)random(-1,2);
+    y += (int)random(-1,2);
+>>>>>>> b716d88c75947a685b5630ecca96441cd4350a2b
   }
 }
 
@@ -99,6 +110,9 @@ ArrayList<Moveable> thingsToMove;
 
 void setup() {
   size(1000, 800);
+  
+  img = loadImage("soccer.jpg");
+  
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
   for (int i = 0; i < 10; i++) {
