@@ -8,12 +8,22 @@ interface Moveable {
   void move();
 }
 
+interface Collideable {
+  boolean isTouching(Thing other);
+}
+
 abstract class Thing implements Displayable {
   float x, y;//Position of the Thing
 
   Thing(float x, float y) {
     this.x = x;
     this.y = y;
+  }
+  float xcor() {
+    return x;
+  }
+  float ycor() {
+    return y;
   }
   abstract void display();
 }
@@ -74,6 +84,15 @@ public class LivingRock extends Rock implements Moveable {
       if (switcher == 0) xinc = (int) random(-1, 2);
       if (switcher == 1) yinc = (int) random(-1, 2);
     }
+  }
+  void display() {
+    super.display();
+    fill(255);
+    ellipse(x + 20, y + 13, 6, 10);
+    ellipse(x + 30, y + 13, 6, 10);
+    fill(0);
+    ellipse(x + 20, y + 13, 2, 4);
+    ellipse(x + 30, y + 13, 2, 4);
   }
 }
 
@@ -155,5 +174,9 @@ void draw() {
   for (Moveable thing : thingsToMove) {
     thing.move();
   }
+<<<<<<< HEAD
 
 }
+=======
+}
+>>>>>>> 6cf4358f6ea8082c931afc820f048c918455d80e
