@@ -1,15 +1,10 @@
-PImage img, i1, i2, i3;
-
+PImage ball, i1, i2, i3;
 interface Displayable {
   void display();
 }
 
 interface Moveable {
   void move();
-}
-
-interface Collideable {
-  boolean isTouching(Thing other);
 }
 
 abstract class Thing implements Displayable {
@@ -19,12 +14,6 @@ abstract class Thing implements Displayable {
     this.x = x;
     this.y = y;
   }
-  float xcor() {
-    return x;
-  }
-  float ycor() {
-    return y;
-  }
   abstract void display();
 }
 
@@ -32,9 +21,7 @@ class Rock extends Thing {
   int shape;
   Rock(float x, float y) {
     super(x, y);
-
     shape = (int) random(0, 10);
-
     
     /*
     Xnum = new float[] {x-25, random(x-1, x-25), x, random(x+1, x+25), x+25, random(x+1, x+25), x, random(x-1, x-25)};
@@ -88,35 +75,21 @@ public class LivingRock extends Rock implements Moveable {
 }
 
 class Ball extends Thing implements Moveable {
-  float xs, ys;
+  int xi, yi;
   Ball(float x, float y) {
     super(x, y);
-    xs = random(-2,2);
-    ys = random(-2,2);
   }
 
   void display() {
     /*ellipse(x,y,50,50);
     ellipse(x-10, y-10, 20, 20);
     ellipse(x+10, y-10, 20, 20);*/
-    image(img, x, y, 50, 50);
+    image(ball, x, y, 50, 50);
   }
 
   void move() {
-    if(x > 950){
-      xs = -2;
-    }
-    if(x < 10){
-      xs = 2;
-    }
-    if(y > 750){
-      ys = -2;
-    }
-    if(y < 10){
-      ys = 2;
-    }
-    x += xs;
-    y += ys;
+    x += random(-2,2);
+    y += random(-2,2);
 
   }
 }
@@ -129,7 +102,7 @@ ArrayList<Moveable> thingsToMove;
 void setup() {
   size(1000, 800);
   
-  img = loadImage("Soccer_ball.png");
+  ball = loadImage("Soccer_ball.png");
   i1 = loadImage("generic rock.jpg");
   i2 = loadImage("grafitti rock.jpg");
   i3 = loadImage("the rock.jpg");
