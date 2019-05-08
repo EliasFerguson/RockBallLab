@@ -1,4 +1,4 @@
-PImage img;
+PImage img, i1, i2;
 interface Displayable {
   void display();
 }
@@ -18,8 +18,6 @@ abstract class Thing implements Displayable {
 }
 
 class Rock extends Thing {
-  PImage i1 = loadImage("grafitti rock.jpg");
-  PImage i2 = loadImage("generic rock.jpg");
   int shape;
   Rock(float x, float y) {
     super(x, y);
@@ -104,6 +102,8 @@ void setup() {
   size(1000, 800);
   
   img = loadImage("soccer.jpg");
+  i1 = loadImage("grafitti rock.jpg");
+  i2 = loadImage("generic rock.jpg");
   
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
