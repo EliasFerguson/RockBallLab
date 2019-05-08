@@ -19,14 +19,12 @@ abstract class Thing implements Displayable {
     this.x = x;
     this.y = y;
   }
-  float xcor() {
-    return x;
+  float xcorCenter() {
+    return x + 25;
   }
-  float ycor() {
-    return y;
+  float ycorCenter() {
+    return y + 25;
   }
-  abstract float xsize();
-  abstract float ysize();
   abstract void display();
 }
 
