@@ -83,6 +83,15 @@ public class LivingRock extends Rock implements Moveable {
       if (switcher == 1) yinc = (int) random(-1, 2);
     }
   }
+  void display() {
+    super.display();
+    fill(255);
+    ellipse(x + 20, y + 13, 6, 10);
+    ellipse(x + 30, y + 13, 6, 10);
+    fill(0);
+    ellipse(x + 20, y + 13, 2, 4);
+    ellipse(x + 30, y + 13, 2, 4);
+  }
 }
 
 class Ball extends Thing implements Moveable {
@@ -104,22 +113,29 @@ class Ball extends Thing implements Moveable {
 
   void move() {
     if(x > 950){
-      xs = -2;
+      xs = -5;
     }
     if(x < 10){
-      xs = 2;
+      xs = 5;
     }
     if(y > 750){
-      ys = -2;
+      ys = -5;
     }
     if(y < 10){
-      ys = 2;
+      ys = 5;
     }
     x += xs;
     y += ys;
 
   }
 }
+ public class BallA extends Ball{
+   float xs, ys;
+   BallA( float x, float y){
+     super(x,y);
+   }
+   
+ }
 
 /*DO NOT EDIT THE REST OF THIS */
 
@@ -158,4 +174,9 @@ void draw() {
   for (Moveable thing : thingsToMove) {
     thing.move();
   }
+<<<<<<< HEAD
+
 }
+=======
+}
+>>>>>>> 6cf4358f6ea8082c931afc820f048c918455d80e
