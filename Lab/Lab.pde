@@ -19,11 +19,11 @@ abstract class Thing implements Displayable {
     this.x = x;
     this.y = y;
   }
-  float xcor() {
-    return x;
+  float xcorCenter() {
+    return x + 25;
   }
-  float ycor() {
-    return y;
+  float ycorCenter() {
+    return y + 25;
   }
   abstract void display();
 }
@@ -34,8 +34,6 @@ class Rock extends Thing {
     super(x, y);
 
     shape = (int) random(0, 10);
-
-    
     /*
     Xnum = new float[] {x-25, random(x-1, x-25), x, random(x+1, x+25), x+25, random(x+1, x+25), x, random(x-1, x-25)};
     Ynum = new float[] {y, random(y-1, y-25), y-25, random(y-1, y-25), y, random(y+1, y+25), y+25, random(y+1, y+25)};
@@ -103,6 +101,8 @@ class Ball extends Thing implements Moveable {
     xs = random(-2,2);
     ys = random(-2,2);
   }
+  
+  boolean isTouching()
 
   void display() {
     /*ellipse(x,y,50,50);
