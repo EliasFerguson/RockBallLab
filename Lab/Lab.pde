@@ -1,5 +1,7 @@
 PImage img, i1, i2, i3;
-ArrayList<Collideable> c;
+ArrayList<Collideable> ListOfCollideables = new ArrayList<Collideable>();
+ArrayList<Displayable> thingsToDisplay = new ArrayList<Displayable>();
+ArrayList<Moveable> thingsToMove = new ArrayList<Moveable>();
 
 interface Displayable {
   void display();
@@ -18,6 +20,7 @@ abstract class Thing implements Displayable, Collideable {
   Thing(float x, float y) {
     this.x = x;
     this.y = y;
+    ListOfCollideables.add(this);
   }
   float xcorCenter() {
     return x + 25;
@@ -31,6 +34,7 @@ abstract class Thing implements Displayable, Collideable {
     }
     return false;
   }
+  
   abstract void display();
 }
 
@@ -143,9 +147,6 @@ class Ball extends Thing implements Moveable {
 
 /*DO NOT EDIT THE REST OF THIS */
 
-ArrayList<Displayable> thingsToDisplay;
-ArrayList<Moveable> thingsToMove;
-
 void setup() {
   size(1000, 800);
   
@@ -153,24 +154,18 @@ void setup() {
   i1 = loadImage("generic rock.jpg");
   i2 = loadImage("grafitti rock.jpg");
   i3 = loadImage("the rock.jpg");
-  
-  thingsToDisplay = new ArrayList<Displayable>();
-  thingsToMove = new ArrayList<Moveable>();
-  c = new ArrayList<Collideable>();
+
   for (int i = 0; i < 10; i++) {
     Ball b = new Ball(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(b);
     thingsToMove.add(b);
-    c.add(b);
     Rock r = new Rock(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(r);
-    c.add(r);
   }
   for (int i = 0; i < 3; i++) {
     LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(m);
     thingsToMove.add(m);
-    c.add(m);
   }
 }
 void draw() {
