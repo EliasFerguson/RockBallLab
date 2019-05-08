@@ -93,13 +93,13 @@ class Ball extends Thing implements Moveable {
     if(x > 950){
       xs = -2;
     }
-    if(x < 50){
+    if(x < 10){
       xs = 2;
     }
     if(y > 750){
       ys = -2;
     }
-    if(y < 50){
+    if(y < 10){
       ys = 2;
     }
     x += xs;
