@@ -29,6 +29,7 @@ abstract class Thing implements Displayable, Collideable {
     if (dist(x, y, other.xcorCenter(), other.ycorCenter()) <= 50) {
       return true;
     }
+    return false;
   }
   abstract void display();
 }
@@ -106,8 +107,6 @@ class Ball extends Thing implements Moveable {
     xs = random(-2,2);
     ys = random(-2,2);
   }
-  
-  boolean isTouching()
 
   void display() {
     /*ellipse(x,y,50,50);
