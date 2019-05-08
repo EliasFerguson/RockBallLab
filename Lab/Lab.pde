@@ -25,6 +25,11 @@ abstract class Thing implements Displayable {
   float ycorCenter() {
     return y + 25;
   }
+  boolean isTouching(Thing other) {
+    if (dist(x, y, other.xcorCenter(), other.ycorCenter()) <= 50) {
+      return true;
+    }
+  }
   abstract void display();
 }
 
@@ -174,9 +179,4 @@ void draw() {
   for (Moveable thing : thingsToMove) {
     thing.move();
   }
-<<<<<<< HEAD
-
 }
-=======
-}
->>>>>>> 6cf4358f6ea8082c931afc820f048c918455d80e
