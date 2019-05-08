@@ -115,7 +115,7 @@ ArrayList<Moveable> thingsToMove;
 void setup() {
   size(1000, 800);
   
-  img = loadImage("soccer.jpg");
+  img = loadImage("Soccerball.svg");
   i1 = loadImage("grafitti rock.jpg");
   i2 = loadImage("generic rock.jpg");
   

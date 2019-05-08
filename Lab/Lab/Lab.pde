@@ -1,4 +1,4 @@
-PImage img, i1, i2, i3;
+PImage ball, i1, i2, i3;
 interface Displayable {
   void display();
 }
@@ -84,7 +84,7 @@ class Ball extends Thing implements Moveable {
     /*ellipse(x,y,50,50);
     ellipse(x-10, y-10, 20, 20);
     ellipse(x+10, y-10, 20, 20);*/
-    image(img, x, y, 50, 50);
+    image(ball, x, y, 50, 50);
   }
 
   void move() {
@@ -102,7 +102,7 @@ ArrayList<Moveable> thingsToMove;
 void setup() {
   size(1000, 800);
   
-  img = loadImage("soccer.jpg");
+  ball = loadImage("Soccer_ball.png");
   i1 = loadImage("generic rock.jpg");
   i2 = loadImage("grafitti rock.jpg");
   i3 = loadImage("the rock.jpg");
