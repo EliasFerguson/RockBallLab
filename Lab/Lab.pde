@@ -174,9 +174,4 @@ void draw() {
   for (Moveable thing : thingsToMove) {
     thing.move();
   }
-<<<<<<< HEAD
-
 }
-=======
-}
->>>>>>> 6cf4358f6ea8082c931afc820f048c918455d80e
