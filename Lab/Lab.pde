@@ -72,6 +72,15 @@ public class LivingRock extends Rock implements Moveable {
       if (switcher == 1) yinc = (int) random(-1, 2);
     }
   }
+  void display() {
+    super.display();
+    fill(255);
+    ellipse(x + 20, y + 13, 6, 10);
+    ellipse(x + 30, y + 13, 6, 10);
+    fill(0);
+    ellipse(x + 20, y + 13, 2, 4);
+    ellipse(x + 30, y + 13, 2, 4);
+  }
 }
 
 class Ball extends Thing implements Moveable {
