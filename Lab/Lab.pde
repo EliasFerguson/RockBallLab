@@ -134,7 +134,11 @@ class Ball extends Thing implements Moveable {
     }
     x += xs;
     y += ys;
-
+    for (Collideable c : ListOfCollideables) {
+      if (c.isTouching(this)) {
+        //FILL IN TOMORROW
+      }
+    }
   }
 }
  public class BallA extends Ball{
