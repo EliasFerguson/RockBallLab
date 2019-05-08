@@ -94,22 +94,29 @@ class Ball extends Thing implements Moveable {
 
   void move() {
     if(x > 950){
-      xs = -2;
+      xs = -5;
     }
     if(x < 10){
-      xs = 2;
+      xs = 5;
     }
     if(y > 750){
-      ys = -2;
+      ys = -5;
     }
     if(y < 10){
-      ys = 2;
+      ys = 5;
     }
     x += xs;
     y += ys;
 
   }
 }
+ public class BallA extends Ball{
+   float xs, ys;
+   BallA( float x, float y){
+     super(x,y);
+   }
+   
+ }
 
 /*DO NOT EDIT THE REST OF THIS */
 
