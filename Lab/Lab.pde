@@ -74,9 +74,11 @@ public class LivingRock extends Rock implements Moveable {
 }
 
 class Ball extends Thing implements Moveable {
-  int xi, yi;
+  float xs, ys;
   Ball(float x, float y) {
     super(x, y);
+    xs = random(-2,2);
+    ys = random(-2,2);
   }
 
   void display() {
@@ -87,8 +89,20 @@ class Ball extends Thing implements Moveable {
   }
 
   void move() {
-    x += random(-2,2);
-    y += random(-2,2);
+    if(x > 950){
+      xs = -2;
+    }
+    if(x < 50){
+      xs = 2;
+    }
+    if(y > 750){
+      ys = -2;
+    }
+    if(y < 50){
+      ys = 2;
+    }
+    x += xs;
+    y += ys;
 
   }
 }
