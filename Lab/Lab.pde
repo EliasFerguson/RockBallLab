@@ -1,4 +1,5 @@
-PImage img, i1, i2;
+PImage img, i1, i2, i3;
+
 interface Displayable {
   void display();
 }
@@ -21,7 +22,9 @@ class Rock extends Thing {
   int shape;
   Rock(float x, float y) {
     super(x, y);
-    shape = (int) random(0, 2);
+
+    shape = (int) random(0, 10);
+
     
     /*
     Xnum = new float[] {x-25, random(x-1, x-25), x, random(x+1, x+25), x+25, random(x+1, x+25), x, random(x-1, x-25)};
@@ -44,8 +47,9 @@ class Rock extends Thing {
       endShape(CLOSE);
     }
     */
-    if (shape == 1) {image(i1,x,y,50,50);}
-    else {image(i2,x,y,50,50);}
+    if (shape < 4) {image(i1,x,y,50,50);}
+    else if (shape >= 4 && shape < 8) {image(i2,x,y,50,50);}
+    else {image(i3,x,y,50,50);}
   }
 }
 
@@ -92,13 +96,13 @@ class Ball extends Thing implements Moveable {
     if(x > 950){
       xs = -2;
     }
-    if(x < 50){
+    if(x < 10){
       xs = 2;
     }
     if(y > 750){
       ys = -2;
     }
-    if(y < 50){
+    if(y < 10){
       ys = 2;
     }
     x += xs;
@@ -115,9 +119,10 @@ ArrayList<Moveable> thingsToMove;
 void setup() {
   size(1000, 800);
   
-  img = loadImage("Soccerball.svg");
-  i1 = loadImage("grafitti rock.jpg");
-  i2 = loadImage("generic rock.jpg");
+  img = loadImage("Soccer_ball.png");
+  i1 = loadImage("generic rock.jpg");
+  i2 = loadImage("grafitti rock.jpg");
+  i3 = loadImage("the rock.jpg");
   
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
@@ -143,4 +148,5 @@ void draw() {
   for (Moveable thing : thingsToMove) {
     thing.move();
   }
+
 }
