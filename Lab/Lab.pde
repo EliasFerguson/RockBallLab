@@ -1,4 +1,5 @@
 PImage img, i1, i2, i3;
+ArrayList c;
 
 interface Displayable {
   void display();
