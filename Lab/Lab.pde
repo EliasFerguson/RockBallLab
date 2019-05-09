@@ -102,7 +102,7 @@ class Ball extends Thing implements Moveable {
     ys = random(-2,2);
   }
   
-  boolean isTouching()
+  boolean isTouching();
 
   void display() {
     /*ellipse(x,y,50,50);
