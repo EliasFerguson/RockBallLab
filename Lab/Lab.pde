@@ -1,4 +1,7 @@
 PImage img, i1, i2, i3;
+ArrayList<Collideable> ListOfCollideables = new ArrayList<Collideable>();
+ArrayList<Displayable> thingsToDisplay = new ArrayList<Displayable>();
+ArrayList<Moveable> thingsToMove = new ArrayList<Moveable>();
 
 interface Displayable {
   void display();
@@ -12,12 +15,12 @@ interface Collideable {
   boolean isTouching(Thing other);
 }
 
-abstract class Thing implements Displayable {
+abstract class Thing implements Displayable, Collideable {
   float x, y;//Position of the Thing
-
   Thing(float x, float y) {
     this.x = x;
     this.y = y;
+    ListOfCollideables.add(this);
   }
   float xcorCenter() {
     return x + 25;
@@ -25,6 +28,13 @@ abstract class Thing implements Displayable {
   float ycorCenter() {
     return y + 25;
   }
+  boolean isTouching(Thing other) {
+    if (dist(x, y, other.xcorCenter(), other.ycorCenter()) <= 50) {
+      return true;
+    }
+    return false;
+  }
+  
   abstract void display();
 }
 
@@ -101,8 +111,6 @@ class Ball extends Thing implements Moveable {
     xs = random(-2,2);
     ys = random(-2,2);
   }
-  
-  boolean isTouching();
 
   void display() {
     /*ellipse(x,y,50,50);
@@ -126,7 +134,11 @@ class Ball extends Thing implements Moveable {
     }
     x += xs;
     y += ys;
-
+    for (Collideable c : ListOfCollideables) {
+      if (c.isTouching(this)) {
+        //FILL IN TOMORROW
+      }
+    }
   }
 }
  public class BallA extends Ball{
@@ -139,9 +151,6 @@ class Ball extends Thing implements Moveable {
 
 /*DO NOT EDIT THE REST OF THIS */
 
-ArrayList<Displayable> thingsToDisplay;
-ArrayList<Moveable> thingsToMove;
-
 void setup() {
   size(1000, 800);
   
@@ -149,9 +158,7 @@ void setup() {
   i1 = loadImage("generic rock.jpg");
   i2 = loadImage("grafitti rock.jpg");
   i3 = loadImage("the rock.jpg");
-  
-  thingsToDisplay = new ArrayList<Displayable>();
-  thingsToMove = new ArrayList<Moveable>();
+
   for (int i = 0; i < 10; i++) {
     Ball b = new Ball(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(b);
