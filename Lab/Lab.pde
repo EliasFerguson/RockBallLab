@@ -20,7 +20,6 @@ abstract class Thing implements Displayable, Collideable {
   Thing(float x, float y) {
     this.x = x;
     this.y = y;
-    ListOfCollideables.add(this);
   }
   float xcorCenter() {
     return x + 25;
@@ -48,7 +47,7 @@ class Rock extends Thing {
     Xnum = new float[] {x-25, random(x-1, x-25), x, random(x+1, x+25), x+25, random(x+1, x+25), x, random(x-1, x-25)};
     Ynum = new float[] {y, random(y-1, y-25), y-25, random(y-1, y-25), y, random(y+1, y+25), y+25, random(y+1, y+25)};
     */
-    fill(random(0,255), random(0,255), random(0,255));
+    //fill(random(0,255), random(0,255), random(0,255));
     
   }
 
@@ -106,10 +105,18 @@ public class LivingRock extends Rock implements Moveable {
 
 class Ball extends Thing implements Moveable {
   float xs, ys;
+  boolean colliding = false;
   Ball(float x, float y) {
     super(x, y);
     xs = random(-10,10);
     ys = random(-10,10);
+  }
+  
+  float xcorCenter() {
+    return x;
+  }
+  float ycorCenter() {
+    return y;
   }
 
   void display() {
@@ -120,23 +127,11 @@ class Ball extends Thing implements Moveable {
   }
 
   void move() {
-    if(x > 950){
-      xs = -5;
-    }
-    if(x < 10){
-      xs = 5;
-    }
-    if(y > 750){
-      ys = -5;
-    }
-    if(y < 10){
-      ys = 5;
-    }
     x += xs;
     y += ys;
     for (Collideable c : ListOfCollideables) {
       if (c.isTouching(this)) {
-        //FILL IN TOMORROW
+        colliding = true;
       }
     }
   }
@@ -147,25 +142,32 @@ class BallA extends Ball {
    }
    
    void display() {
-     fill(255, 0, 0);
+     if (colliding) {fill(255,0,0);}
+     else {fill(0,0,255);}
      ellipse(x,y,50,50);
+     colliding = false;
    }
    
    void move() {
-     if(x > 950){
+     if(x > 970){
        xs = -xs;
      }
-     if(x < 10){
+     if(x < 30){
        xs = -xs;
      }
-     if(y > 750){
+     if(y > 770){
        ys = -ys;
      }
-     if(y < 10){
+     if(y < 30){
        ys = -ys;
      }
      x += xs;
      y += ys;
+     for (Collideable c : ListOfCollideables) {
+      if (c.isTouching(this)) {
+        colliding = true;
+      }
+    }
    }
 }
  
@@ -177,11 +179,30 @@ class BallB extends Ball {
    void display() {
      fill(255, 255, 0);
      ellipse(x,y,50,50);
+     if (colliding) {fill(255,0,0);}
      ellipse(x,y,25,25);
    }
    
    void move() {
-     
+     if(x > 970){
+       xs = -xs;
+     }
+     if(x < 30){
+       xs = -xs;
+     }
+     if(y > 770){
+       ys = -ys;
+     }
+     if(y < 30){
+       ys = -ys;
+     }
+     x += xs;
+     y += ys;
+     for (Collideable c : ListOfCollideables) {
+      if (c.isTouching(this)) {
+        colliding = true;
+      }
+    }
    }
 }
 
@@ -199,25 +220,31 @@ void setup() {
     Ball b = new BallA(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(b);
     thingsToMove.add(b);
+    ListOfCollideables.add(b);
   }
   for (int i = 0; i < 5; i++) {
     Ball b = new BallB(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(b);
     thingsToMove.add(b);
+    ListOfCollideables.add(b);
   }
   for (int i = 0; i < 10; i++) {
     Rock r = new Rock(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(r);
+    ListOfCollideables.add(r);
   }
   for (int i = 0; i < 3; i++) {
     LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(m);
     thingsToMove.add(m);
+    ListOfCollideables.add(m);
   }
 }
 void draw() {
   background(255);
-
+  
+  //text(ListOfCollideables.size(),10,10);
+  
   for (Displayable thing : thingsToDisplay) {
     thing.display();
   }
