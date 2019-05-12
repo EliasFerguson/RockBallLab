@@ -142,24 +142,26 @@ class BallA extends Ball {
    }
    
    void display() {
-     if (colliding) {fill(255,0,0);}
-     else {fill(0,0,255);}
-     ellipse(x,y,50,50);
+     if (colliding) {
+       fill(255,0,0);
+       ellipse(x,y,50,50);
+     }
+     else {image(img,0,0);}
      colliding = false;
    }
    
    void move() {
      if(x > 970){
-       xs = -xs;
+       xs = -xs; ys = -ys;
      }
      if(x < 30){
-       xs = -xs;
+       xs = -xs; ys = -ys;
      }
      if(y > 770){
-       ys = -ys;
+       ys = -ys; xs = -xs;
      }
      if(y < 30){
-       ys = -ys;
+       ys = -ys; xs = -xs;
      }
      x += xs;
      y += ys;
@@ -181,6 +183,7 @@ class BallB extends Ball {
      ellipse(x,y,50,50);
      if (colliding) {fill(255,0,0);}
      ellipse(x,y,25,25);
+     colliding = false;
    }
    
    void move() {
@@ -211,7 +214,7 @@ class BallB extends Ball {
 void setup() {
   size(1000, 800);
   
-  //img = loadImage("Soccer_ball.png");
+  img = loadImage("Soccer_ball.png");
   i1 = loadImage("generic rock.jpg");
   //i2 = loadImage("grafitti rock.jpg");
   i3 = loadImage("the rock.jpg");
