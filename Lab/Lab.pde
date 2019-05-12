@@ -105,11 +105,12 @@ public class LivingRock extends Rock implements Moveable {
 
 class Ball extends Thing implements Moveable {
   float xs, ys;
-  boolean colliding = false;
+  boolean colliding;
   Ball(float x, float y) {
     super(x, y);
     xs = random(-10,10);
     ys = random(-10,10);
+    colliding = false;
   }
   
   float xcorCenter() {
@@ -124,6 +125,7 @@ class Ball extends Thing implements Moveable {
     //ellipse(x-10, y-10, 20, 20);
     //ellipse(x+10, y-10, 20, 20);
     //image(img, x, y, 50, 50);
+    colliding = false;
   }
 
   void move() {
@@ -146,7 +148,7 @@ class BallA extends Ball {
        fill(255,0,0);
        ellipse(x,y,50,50);
      }
-     else {image(img,0,0);}
+     else {image(img,x,y,50,50);}
      colliding = false;
    }
    
