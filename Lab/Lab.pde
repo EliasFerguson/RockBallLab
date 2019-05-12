@@ -105,12 +105,10 @@ public class LivingRock extends Rock implements Moveable {
 
 class Ball extends Thing implements Moveable {
   float xs, ys;
-  boolean colliding;
   Ball(float x, float y) {
     super(x, y);
     xs = random(-10,10);
     ys = random(-10,10);
-    colliding = false;
   }
   
   float xcorCenter() {
@@ -121,21 +119,20 @@ class Ball extends Thing implements Moveable {
   }
 
   void display() {
+    for (Collideable c : ListOfCollideables) {
+      if (c.isTouching(this) && c != this) {
+        //some code
+      }
+    }
     ellipse(x,y,50,50);
     //ellipse(x-10, y-10, 20, 20);
     //ellipse(x+10, y-10, 20, 20);
     //image(img, x, y, 50, 50);
-    colliding = false;
   }
 
   void move() {
     x += xs;
     y += ys;
-    for (Collideable c : ListOfCollideables) {
-      if (c.isTouching(this)) {
-        colliding = true;
-      }
-    }
   }
 }
 class BallA extends Ball {
@@ -144,12 +141,13 @@ class BallA extends Ball {
    }
    
    void display() {
-     if (colliding) {
-       fill(255,0,0);
-       ellipse(x,y,50,50);
+     for (Collideable c : ListOfCollideables) {
+      if (c.isTouching(this) && c != this) {
+        fill(255,0,0);
+        ellipse(x,y,50,50);
+      }
+      else {image(img,x-25,y-25,50,50);}
      }
-     else {image(img,x,y,50,50);}
-     colliding = false;
    }
    
    void move() {
@@ -167,11 +165,6 @@ class BallA extends Ball {
      }
      x += xs;
      y += ys;
-     for (Collideable c : ListOfCollideables) {
-      if (c.isTouching(this)) {
-        colliding = true;
-      }
-    }
    }
 }
  
@@ -183,9 +176,12 @@ class BallB extends Ball {
    void display() {
      fill(255, 255, 0);
      ellipse(x,y,50,50);
-     if (colliding) {fill(255,0,0);}
+     for (Collideable c : ListOfCollideables) {
+      if (c.isTouching(this) && c != this) {
+        fill(255,0,0);
+      }
+     }
      ellipse(x,y,25,25);
-     colliding = false;
    }
    
    void move() {
@@ -203,11 +199,6 @@ class BallB extends Ball {
      }
      x += xs;
      y += ys;
-     for (Collideable c : ListOfCollideables) {
-      if (c.isTouching(this)) {
-        colliding = true;
-      }
-    }
    }
 }
 
