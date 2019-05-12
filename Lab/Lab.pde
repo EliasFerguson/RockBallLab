@@ -146,7 +146,7 @@ class BallA extends Ball {
         fill(255,0,0);
         ellipse(x,y,50,50);
       }
-      else {image(img,x-25,y-25,50,50);}
+      else {image(img,x-12.5,y-12.5,25,25);}
      }
    }
    
