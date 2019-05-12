@@ -65,8 +65,8 @@ class Rock extends Thing {
       endShape(CLOSE);
     }
     */
-    if (shape < 4) {image(i1,x,y,50,50);}
-    else if (shape >= 4 && shape < 8) {image(i2,x,y,50,50);}
+    if (shape < 5) {image(i1,x,y,50,50);}
+    //else if (shape >= 4 && shape < 8) {image(i2,x,y,50,50);}
     else {image(i3,x,y,50,50);}
   }
 }
@@ -108,15 +108,15 @@ class Ball extends Thing implements Moveable {
   float xs, ys;
   Ball(float x, float y) {
     super(x, y);
-    xs = random(-2,2);
-    ys = random(-2,2);
+    xs = random(-10,10);
+    ys = random(-10,10);
   }
 
   void display() {
-    /*ellipse(x,y,50,50);
-    ellipse(x-10, y-10, 20, 20);
-    ellipse(x+10, y-10, 20, 20);*/
-    image(img, x, y, 50, 50);
+    ellipse(x,y,50,50);
+    //ellipse(x-10, y-10, 20, 20);
+    //ellipse(x+10, y-10, 20, 20);
+    //image(img, x, y, 50, 50);
   }
 
   void move() {
@@ -141,28 +141,71 @@ class Ball extends Thing implements Moveable {
     }
   }
 }
- public class BallA extends Ball{
-   float xs, ys;
-   BallA( float x, float y){
+class BallA extends Ball {
+   BallA(float x, float y){
      super(x,y);
    }
    
- }
+   void display() {
+     fill(255, 0, 0);
+     ellipse(x,y,50,50);
+   }
+   
+   void move() {
+     if(x > 950){
+       xs = -xs;
+     }
+     if(x < 10){
+       xs = -xs;
+     }
+     if(y > 750){
+       ys = -ys;
+     }
+     if(y < 10){
+       ys = -ys;
+     }
+     x += xs;
+     y += ys;
+   }
+}
+ 
+class BallB extends Ball {
+   BallB(float x, float y) {
+     super(x,y);
+   }
+   
+   void display() {
+     fill(255, 255, 0);
+     ellipse(x,y,50,50);
+     ellipse(x,y,25,25);
+   }
+   
+   void move() {
+     
+   }
+}
 
 /*DO NOT EDIT THE REST OF THIS */
 
 void setup() {
   size(1000, 800);
   
-  img = loadImage("Soccer_ball.png");
+  //img = loadImage("Soccer_ball.png");
   i1 = loadImage("generic rock.jpg");
-  i2 = loadImage("grafitti rock.jpg");
+  //i2 = loadImage("grafitti rock.jpg");
   i3 = loadImage("the rock.jpg");
 
-  for (int i = 0; i < 10; i++) {
-    Ball b = new Ball(50+random(width-100), 50+random(height-100));
+  for (int i = 0; i < 5; i++) {
+    Ball b = new BallA(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(b);
     thingsToMove.add(b);
+  }
+  for (int i = 0; i < 5; i++) {
+    Ball b = new BallB(50+random(width-100), 50+random(height-100));
+    thingsToDisplay.add(b);
+    thingsToMove.add(b);
+  }
+  for (int i = 0; i < 10; i++) {
     Rock r = new Rock(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(r);
   }
