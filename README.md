@@ -2,7 +2,7 @@
 <br>
 Elias Ferguson - LivingRock move()
 <br>
-Alexander Zou - Rock display()
+Alexander Zou - Rock display() (and some Ball move())
 <br>
 Jiong Hao Wu - Ball move()
 <br>
