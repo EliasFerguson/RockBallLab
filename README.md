@@ -9,3 +9,4 @@ Jiong Hao Wu - Ball move()
 Eliza Wu - Ball display()
 <br>
 George Zhou - Thing isTouching()
+On May 7th and 8th, Elias and Alexander worked on the various aspects of Rock (and LivingRock) together.
