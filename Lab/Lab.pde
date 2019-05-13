@@ -105,7 +105,6 @@ public class LivingRock extends Rock implements Moveable {
 
 class Ball extends Thing implements Moveable {
   float xs, ys;
-  boolean colliding = false;
   Ball(float x, float y) {
     super(x, y);
     xs = random(-10,10);
@@ -120,6 +119,11 @@ class Ball extends Thing implements Moveable {
   }
 
   void display() {
+    for (Collideable c : ListOfCollideables) {
+      if (c.isTouching(this) && c != this) {
+        //some code
+      }
+    }
     ellipse(x,y,50,50);
     //ellipse(x-10, y-10, 20, 20);
     //ellipse(x+10, y-10, 20, 20);
@@ -129,11 +133,6 @@ class Ball extends Thing implements Moveable {
   void move() {
     x += xs;
     y += ys;
-    for (Collideable c : ListOfCollideables) {
-      if (c.isTouching(this)) {
-        colliding = true;
-      }
-    }
   }
 }
 class BallA extends Ball {
@@ -142,12 +141,13 @@ class BallA extends Ball {
    }
    
    void display() {
-     if (colliding) {
-       fill(255,0,0);
-       ellipse(x,y,50,50);
+     for (Collideable c : ListOfCollideables) {
+      if (c.isTouching(this) && c != this) {
+        fill(255,0,0);
+        ellipse(x,y,50,50);
+      }
+      else {image(img,x-12.5,y-12.5,25,25);}
      }
-     else {image(img,0,0);}
-     colliding = false;
    }
    
    void move() {
@@ -165,11 +165,6 @@ class BallA extends Ball {
      }
      x += xs;
      y += ys;
-     for (Collideable c : ListOfCollideables) {
-      if (c.isTouching(this)) {
-        colliding = true;
-      }
-    }
    }
 }
  
@@ -181,9 +176,18 @@ class BallB extends Ball {
    void display() {
      fill(255, 255, 0);
      ellipse(x,y,50,50);
-     if (colliding) {fill(255,0,0);}
+     for (Collideable c : ListOfCollideables) {
+      if (c.isTouching(this) && c != this) {
+      fill(255, 0, 0);
+      if(x - this.xcorCenter() < 60){
+        xs = -xs;
+      }
+      if(y - this.ycorCenter() < 60){
+        ys = -ys;
+      }
+      }
+     }
      ellipse(x,y,25,25);
-     colliding = false;
    }
    
    void move() {
@@ -201,11 +205,6 @@ class BallB extends Ball {
      }
      x += xs;
      y += ys;
-     for (Collideable c : ListOfCollideables) {
-      if (c.isTouching(this)) {
-        colliding = true;
-      }
-    }
    }
 }
 
