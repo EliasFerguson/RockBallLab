@@ -138,7 +138,10 @@ class Ball extends Thing implements Moveable {
 class BallA extends Ball {
    BallA(float x, float y){
      super(x,y);
+     xs = random(-8,8);
+     ys = random(-8,8);
    }
+  
    
    void display() {
      for (Collideable c : ListOfCollideables) {
@@ -152,19 +155,21 @@ class BallA extends Ball {
    
    void move() {
      if(x > 970){
-       xs = -xs; ys = -ys;
+       xs = -xs; 
      }
      if(x < 30){
-       xs = -xs; ys = -ys;
-     }
-     if(y > 770){
-       ys = -ys; xs = -xs;
-     }
-     if(y < 30){
-       ys = -ys; xs = -xs;
+       xs = -xs; 
      }
      x += xs;
      y += ys;
+     ys = ys + 0.98;
+     if(y > height){
+       ys = ys * -0.95;
+       y = height;
+     }
+     if(y < 50){
+       ys =-ys;
+     }
    }
 }
  
@@ -179,12 +184,6 @@ class BallB extends Ball {
      for (Collideable c : ListOfCollideables) {
       if (c.isTouching(this) && c != this) {
       fill(255, 0, 0);
-      if(x - this.xcorCenter() < 60){
-        xs = -xs;
-      }
-      if(y - this.ycorCenter() < 60){
-        ys = -ys;
-      }
       }
      }
      ellipse(x,y,25,25);
