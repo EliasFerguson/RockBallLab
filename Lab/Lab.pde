@@ -2,6 +2,7 @@ PImage img, i1, i2, i3;
 ArrayList<Collideable> ListOfCollideables = new ArrayList<Collideable>();
 ArrayList<Displayable> thingsToDisplay = new ArrayList<Displayable>();
 ArrayList<Moveable> thingsToMove = new ArrayList<Moveable>();
+ArrayList<LivingRock> livingRocks = new ArrayList<LivingRock>();
 
 interface Displayable {
   void display();
@@ -96,6 +97,14 @@ public class LivingRock extends Rock implements Moveable {
       xSpeed = random(0, 2);
       if (switcher == 0) xMult = (int) random(-1, 2);
       if (switcher == 1) yMult = (int) random(-1, 2);
+    }
+    for (LivingRock c : livingRocks) {
+      if (c.isTouching(this) && c != this) {
+        this.xMult *= -1;
+        this.yMult *= -1;
+        c.xMult *= -1;
+        c.yMult *= -1;
+      }
     }
   }
   void display() {
@@ -246,6 +255,7 @@ void setup() {
     thingsToDisplay.add(m);
     thingsToMove.add(m);
     ListOfCollideables.add(m);
+    livingRocks.add(m);
   }
 }
 void draw() {
