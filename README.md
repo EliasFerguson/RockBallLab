@@ -5,6 +5,7 @@ Elias Ferguson - LivingRock move()
 Alexander Zou - Rock display() (and some Ball move()/display() for collisions)
 <br>
 Jiong Hao Wu - Ball move()
+made the ball type A bounce like gravity and type B bounce off other objects.
 <br>
 Eliza Wu - Ball display()
 <br>

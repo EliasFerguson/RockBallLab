@@ -264,6 +264,7 @@ PImage img, i1, i2, i3;
 ArrayList<Collideable> ListOfCollideables = new ArrayList<Collideable>();
 ArrayList<Displayable> thingsToDisplay = new ArrayList<Displayable>();
 ArrayList<Moveable> thingsToMove = new ArrayList<Moveable>();
+ArrayList<LivingRock> livingRocks = new ArrayList<LivingRock>();
 
 interface Displayable {
   void display();
@@ -333,25 +334,39 @@ class Rock extends Thing {
 }
 
 public class LivingRock extends Rock implements Moveable {
-  int xinc;
-  int yinc;
+  float xSpeed;
+  float ySpeed;
+  int xMult;
+  int yMult;
   LivingRock(float x, float y) {
     super(x, y);
-    xinc = (int) random(-1, 2);
-    yinc = (int) random(-1, 2);
+    xSpeed = random(0, 2);
+    ySpeed = random(0, 2);
+    xMult = (int) random(-1, 2);
+    yMult = (int) random(-1, 2);
   }
   void move() {  
-    if (x < 50) xinc = 1;
-    if (x > 950) xinc = -1;
-    if (y < 50) yinc = 1;
-    if (y > 750) yinc = -1;
-    x += xinc;
-    y += yinc;
+    if (x < 50) xMult = 1;
+    if (x > 950) xMult = -1;
+    if (y < 50) yMult = 1;
+    if (y > 750) yMult = -1;
+    x += xSpeed * xMult;
+    y += ySpeed * yMult;
     int switchy = (int) random(0, 25);
     if (switchy == 0) {
       int switcher = (int) random(0, 2);
-      if (switcher == 0) xinc = (int) random(-1, 2);
-      if (switcher == 1) yinc = (int) random(-1, 2);
+      ySpeed = random(0, 2);
+      xSpeed = random(0, 2);
+      if (switcher == 0) xMult = (int) random(-1, 2);
+      if (switcher == 1) yMult = (int) random(-1, 2);
+    }
+    for (LivingRock c : livingRocks) {
+      if (c.isTouching(this) && c != this) {
+        this.xMult *= -1;
+        this.yMult *= -1;
+        c.xMult *= -1;
+        c.yMult *= -1;
+      }
     }
   }
   void display() {
@@ -446,6 +461,12 @@ class BallB extends Ball {
      for (Collideable c : ListOfCollideables) {
       if (c.isTouching(this) && c != this) {
       fill(255, 0, 0);
+      if(x - this.xcorCenter() < 60){
+        xs = -xs;
+      }
+      if(y - this.ycorCenter() < 60){
+        ys = -ys;
+      }
       }
      }
      ellipse(x,y,25,25);
@@ -501,6 +522,7 @@ void setup() {
     thingsToDisplay.add(m);
     thingsToMove.add(m);
     ListOfCollideables.add(m);
+    livingRocks.add(m);
   }
 }
 void draw() {
