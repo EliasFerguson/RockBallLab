@@ -71,25 +71,31 @@ class Rock extends Thing {
 }
 
 public class LivingRock extends Rock implements Moveable {
-  int xinc;
-  int yinc;
+  float xSpeed;
+  float ySpeed;
+  int xMult;
+  int yMult;
   LivingRock(float x, float y) {
     super(x, y);
-    xinc = (int) random(-1, 2);
-    yinc = (int) random(-1, 2);
+    xSpeed = random(0, 2);
+    ySpeed = random(0, 2);
+    xMult = (int) random(-1, 2);
+    yMult = (int) random(-1, 2);
   }
   void move() {  
-    if (x < 50) xinc = 1;
-    if (x > 950) xinc = -1;
-    if (y < 50) yinc = 1;
-    if (y > 750) yinc = -1;
-    x += xinc;
-    y += yinc;
+    if (x < 50) xMult = 1;
+    if (x > 950) xMult = -1;
+    if (y < 50) yMult = 1;
+    if (y > 750) yMult = -1;
+    x += xSpeed * xMult;
+    y += ySpeed * yMult;
     int switchy = (int) random(0, 25);
     if (switchy == 0) {
       int switcher = (int) random(0, 2);
-      if (switcher == 0) xinc = (int) random(-1, 2);
-      if (switcher == 1) yinc = (int) random(-1, 2);
+      ySpeed = random(0, 2);
+      xSpeed = random(0, 2);
+      if (switcher == 0) xMult = (int) random(-1, 2);
+      if (switcher == 1) yMult = (int) random(-1, 2);
     }
   }
   void display() {
