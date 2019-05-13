@@ -2,7 +2,7 @@ PImage img, i1, i2, i3;
 ArrayList<Collideable> ListOfCollideables = new ArrayList<Collideable>();
 ArrayList<Displayable> thingsToDisplay = new ArrayList<Displayable>();
 ArrayList<Moveable> thingsToMove = new ArrayList<Moveable>();
-
+float angle = 0.05;
 interface Displayable {
   void display();
 }
@@ -169,8 +169,10 @@ class BallA extends Ball {
 }
  
 class BallB extends Ball {
+  float high;
    BallB(float x, float y) {
      super(x,y);
+     high = random(-30,30);
    }
    
    void display() {
@@ -191,6 +193,8 @@ class BallB extends Ball {
    }
    
    void move() {
+     ys = cos(angle)*high;
+     angle += 0.03;
      if(x > 970){
        xs = -xs;
      }
