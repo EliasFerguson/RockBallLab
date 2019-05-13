@@ -2,7 +2,7 @@ PImage img, i1, i2, i3;
 ArrayList<Collideable> ListOfCollideables = new ArrayList<Collideable>();
 ArrayList<Displayable> thingsToDisplay = new ArrayList<Displayable>();
 ArrayList<Moveable> thingsToMove = new ArrayList<Moveable>();
-
+int counter = 0;
 interface Displayable {
   void display();
 }
@@ -176,8 +176,8 @@ class Ball extends Thing implements Moveable {
    float xs, ys;
    BallB( float x, float y){
      super(x,y);
-     xs = random(-2,10);
-    ys = random(-2,10);
+     xs = random(-2,2);
+    ys = random(-2,2);
    }
    void move() {
     if(x > 950){
@@ -192,9 +192,30 @@ class Ball extends Thing implements Moveable {
     if(y < 10){
       ys = 10;
     }
+    /*x += xs;
+    y += ys;*/
+    xs = counter;
+     ys = sin(counter);
+     if (counter >= 2*PI){
+     counter = 0;
+     }
+     else{
+     counter += PI/12;
+     }
     x += xs;
     y += ys;
   }
+    
+   void moveCircle(){
+     xs = counter;
+     ys = sin(counter);
+     if (counter >= 2*PI){
+     counter = 0;
+     }
+     else{
+     counter += PI/12;
+     }
+   }
    void display() {
     fill(255,0,0);
     ellipse(x,y,50,50);
