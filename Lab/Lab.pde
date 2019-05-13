@@ -178,7 +178,13 @@ class BallB extends Ball {
      ellipse(x,y,50,50);
      for (Collideable c : ListOfCollideables) {
       if (c.isTouching(this) && c != this) {
-        fill(255,0,0);
+      fill(255, 0, 0);
+      if(x - this.xcorCenter() < 60){
+        xs = -xs;
+      }
+      if(y - this.ycorCenter() < 60){
+        ys = -ys;
+      }
       }
      }
      ellipse(x,y,25,25);
